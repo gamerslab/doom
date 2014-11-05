@@ -1,0 +1,61 @@
+Trying the game
+==================
+
+## Setting up the repository
+Clone this repository to any directory you want:
+
+```shell
+git clone https://github.com/gamerslab/doom
+```
+
+Then, initialize and download the repository submodules (SFML):
+
+```shell
+git submodule update --init
+```
+
+## Satisfying dependencies
+
+You need to have `OpenGL`, `OpenAL`, `GLEW`, `sndfile`, `xrandr`, `FreeType`, `libjpeg` and `cmake` installed.
+
+### Windows
+All the dependencies are included in the SFML submodule. There is no need to download and build them manually.
+You are good to go.
+
+### Debian-based Linux
+You can download all the dependencies using `aptitude`. In Ubuntu 14.04 this command will install everything you need:
+
+```
+sudo apt-get install libglew-dev libopenal-dev libsndfile1-dev libxrandr-dev libfreetype6-dev libjpeg-dev cmake
+```
+
+The name of the packages can possibly change in other Debian-based distributions. Use `apt-cache search` to find the
+development package that satisfies the dependency.
+
+## Compiling the game
+
+### Windows
+Use `cmake` to generate a `Visual Studio` solution:
+
+```shell
+cmake .
+```
+
+Open the solution in `Visual Studio` and build the game there.
+
+### Linux
+Use `cmake` to generate a `Makefile` to compile the game.
+
+```shell
+cmake .
+make
+```
+
+## Playing doom
+Run the `doom` executable you just compiled!
+
+```shell
+./doom
+```
+
+Have fun!
