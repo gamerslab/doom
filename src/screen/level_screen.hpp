@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../game_screen.hpp"
+#include "../level.hpp"
 
 class LevelScreen : public GameScreen
 {
@@ -13,4 +14,5 @@ public:
     void Render();
 
 private:
+    Level* level;
 };

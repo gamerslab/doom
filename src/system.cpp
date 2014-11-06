@@ -1,3 +1,4 @@
+#include <iostream>
 #include "system.hpp"
 
 System::System(const std::vector<unsigned int>& required_components) :
@@ -5,7 +6,7 @@ System::System(const std::vector<unsigned int>& required_components) :
 {
     for(unsigned int component : required_components)
     {
-        lock_ = lock_ | (1 >> component);
+        lock_ = lock_ | (1 << component);
     }
 }
 

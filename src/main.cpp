@@ -7,7 +7,13 @@ int main()
     sf::Window window(sf::VideoMode(1024, 768), "Doom");
     window.setFramerateLimit(60);
 
+    // Initialize graphics and main screen
     Game::INSTANCE.Init();
+
+    // For some reason, it is necessary to do a display before binding the
+    // atlas texture
+    window.display();
+    Game::INSTANCE.Bind();
 
     while(window.isOpen())
     {

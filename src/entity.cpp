@@ -1,3 +1,4 @@
+#include <iostream>
 #include "entity.hpp"
 
 Entity::Entity() :
@@ -10,11 +11,11 @@ unsigned long Entity::key() const {
     return key_;
 }
 
-Component *Entity::component(unsigned int id) const {
+Component* Entity::component(unsigned int id) const {
     return components_[id];
 }
 
-void Entity::AddComponent(Component *component) {
+void Entity::AddComponent(Component* component) {
     components_[component->id()] = component;
-    key_ = key_ | (1 >> component->id());
+    key_ = key_ | (1 << component->id());
 }

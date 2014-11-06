@@ -21,6 +21,10 @@ set(SOURCE_FILES
     src/component.hpp
     src/component/position_component.cpp
     src/component/position_component.hpp
+    src/component/velocity_component.cpp
+    src/component/velocity_component.hpp
+    src/component/sprite_component.cpp
+    src/component/sprite_component.hpp
 
     # Systems
     src/system.cpp

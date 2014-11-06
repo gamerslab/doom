@@ -6,6 +6,7 @@
 #include <GL/gl.h>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/System/Clock.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include "game_screen.hpp"
 
 class Game
@@ -23,6 +24,7 @@ public:
     static int HEIGHT;
     static bool DIRTY;
     static Game INSTANCE;
+    static sf::Vector2u TEXTURE_SIZE;
 
     static GLuint FramebufferAux();
     static void Error(const char* error, const std::string& wat);
@@ -34,6 +36,7 @@ public:
     bool IsKeyPressed(sf::Keyboard::Key key) const;
 
 	void Init();
+    void Bind();
 	bool Tick();
 	void Finalize();
 
@@ -56,11 +59,13 @@ private:
 	bool keys[256];
     GameScreen* screen;
     GameScreen* old_screen;
+    sf::Texture* texture;
 
     // Timing variables
     float current_time;
     float dt;
     float accumulator;
+    bool bound;
 
     void ChangeScreen(GameScreen* screen);
 };

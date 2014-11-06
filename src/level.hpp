@@ -3,6 +3,7 @@
 #include "entity.hpp"
 #include "system/logic_system.hpp"
 #include "system/render_system.hpp"
+#include "component/position_component.hpp"
 
 class Level
 {

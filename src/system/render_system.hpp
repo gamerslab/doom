@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../system.hpp"
-#include "../component/position_component.hpp"
 
 class RenderSystem : public System
 {

@@ -23,6 +23,7 @@ bool Game::DIRTY = true;
 GLuint Game::FRAMEBUFFER_AUX = 0;
 GLuint Game::RENDERBUFFER_AUX = 0;
 Game Game::INSTANCE;
+sf::Vector2u Game::TEXTURE_SIZE;
 
 GLuint Game::FramebufferAux() {
     if(FRAMEBUFFER_AUX && DIRTY) {
@@ -68,6 +69,7 @@ Game::Game()
     current_time = 0;
     dt = 0.016;
     accumulator = 0.0;
+    bound = false;
 
     for(int i = 0; i < 256; ++i) {
         keys[i] = false;
@@ -85,17 +87,28 @@ Game::~Game()
 
 void Game::Init()
 {
-	//Graphics initialization
-    glDisable(GL_DEPTH_TEST);
+    //Graphics initialization
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+    glViewport(0, 0, Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
 
     glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-    glOrtho(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 1);
-	glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    // Perspective mode
+    //glOrtho(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 1);
+
+    gluPerspective(70, Game::WINDOW_WIDTH / Game::WINDOW_HEIGHT, 0.01, 100);
+
+    glMatrixMode(GL_MODELVIEW);
+
+    texture = new sf::Texture();
+    if(!texture->loadFromFile("res/atlas.png"))
+        Game::Error("Error loading atlas texture: ", "res/atlas.png");
+
+    TEXTURE_SIZE = texture->getSize();
 
     // Set seed
     std::srand((unsigned int)std::time(0));
@@ -144,10 +157,10 @@ void Game::Update(double delta)
     screen->Tick(delta);
 }
 
-void Game::Render()
-{
+void Game::Render() {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
+    glScalef(Game::SCALE, Game::SCALE, Game::SCALE);
 
     screen->Render();
 }
@@ -216,4 +229,9 @@ bool Game::ConsumeKey(const char key) {
 
 bool Game::IsKeyPressed(sf::Keyboard::Key key) const {
     return keys[key];
+}
+
+void Game::Bind() {
+    // Bind atlas texture
+    sf::Texture::bind(texture, sf::Texture::Pixels);
 }
