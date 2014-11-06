@@ -45,7 +45,7 @@ public:
 
 	void ReadKeyboard(unsigned char key, bool press);
     void Update(double delta);
-	void Render() const;
+	void Render();
     void Reshape(int width, int height);
 
 private:

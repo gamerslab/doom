@@ -144,7 +144,7 @@ void Game::Update(double delta)
     screen->Tick(delta);
 }
 
-void Game::Render() const
+void Game::Render()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(doom)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/lib/SFML/cmake/Modules/")
 
 set(SOURCE_FILES
@@ -10,6 +11,28 @@ set(SOURCE_FILES
     src/game.hpp
     src/debug.cpp
     src/debug.hpp
+    src/level.cpp
+    src/level.hpp
+    src/entity.cpp
+    src/entity.hpp
+
+    # Components
+    src/component.cpp
+    src/component.hpp
+    src/component/position_component.cpp
+    src/component/position_component.hpp
+
+    # Systems
+    src/system.cpp
+    src/system.hpp
+    src/system/logic_system.cpp
+    src/system/logic_system.hpp
+    src/system/render_system.cpp
+    src/system/render_system.hpp
+
+    ## Logic
+    src/system/logic/movement_system.cpp
+    src/system/logic/movement_system.hpp
 
     # Audio
     src/audio/music.cpp

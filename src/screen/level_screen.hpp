@@ -10,7 +10,7 @@ public:
     ~LevelScreen();
 
     void Tick(double delta);
-    void Render() const;
+    void Render();
 
 private:
 };

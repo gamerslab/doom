@@ -17,7 +17,7 @@ void LevelScreen::Tick(double delta)
 
 }
 
-void LevelScreen::Render() const
+void LevelScreen::Render()
 {
 
 }
