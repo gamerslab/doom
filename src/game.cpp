@@ -100,7 +100,7 @@ void Game::Init()
     // Perspective mode
     //glOrtho(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 0, 1);
 
-    gluPerspective(70, Game::WINDOW_WIDTH / Game::WINDOW_HEIGHT, 0.01, 100);
+    gluPerspective(100, Game::WINDOW_WIDTH / Game::WINDOW_HEIGHT, 0.01, 1000);
 
     glMatrixMode(GL_MODELVIEW);
 

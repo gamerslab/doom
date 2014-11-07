@@ -18,15 +18,15 @@ void RenderSystem::Render(Entity* entity)
     PositionComponent* position = (PositionComponent*) entity->component(PositionComponent::ID);
     SpriteComponent* sprite = (SpriteComponent*) entity->component(SpriteComponent::ID);
 
+    glTexCoord2f(sprite->x, sprite->y + 64);
+    glVertex3f(position->x - 29, position->y, -100);
+
+    glTexCoord2f(sprite->x + 58, sprite->y + 64);
+    glVertex3f(position->x + 29, position->y, -100);
+
+    glTexCoord2f(sprite->x + 58, sprite->y);
+    glVertex3f(position->x + 29, position->y + 64, -100);
+
     glTexCoord2f(sprite->x, sprite->y);
-    glVertex3f(position->x, position->y, -1);
-
-    glTexCoord2f(sprite->x + 64, sprite->y);
-    glVertex3f(position->x + 64, position->y, -1);
-
-    glTexCoord2f(sprite->x + 64, sprite->y + 58);
-    glVertex3f(position->x + 64, position->y + 58, -1);
-
-    glTexCoord2f(sprite->x, sprite->y + 58);
-    glVertex3f(position->x, position->y + 58, -1);
+    glVertex3f(position->x - 29, position->y + 64, -100);
 }
